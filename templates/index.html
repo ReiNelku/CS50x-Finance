@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-start">Symbol</th>
+                <th class="text-start">Name</th>
+                <th class="text-end">Shares</th>
+                <th class="text-end">Price</th>
+                <th class="text-end">TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for share in shares %}
+                {% if share.shares == 0 %}
+                    {% continue %}
+                {% endif %}
+                <tr>
+                    <th class="text-start">{{ share.name }}</th>
+                    <th class="text-start">{{ share.name }}</th>
+                    <th class="text-end">{{ share.shares }}</th>
+                    <th class="text-end">{{ share.price | usd }}</th>
+                    <th class="text-end">{{ share.total | usd }}</th>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th class="border-0 fw-bold text-end" colspan="4">Cash</th>
+                <th class="border-0 text-end">{{ cash | usd }}</th>
+            </tr>
+            <tr>
+                <th class="border-0 fw-bold text-end" colspan="4">TOTAL</th>
+                <th class="border-0 text-end">{{ total | usd }}</th>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}
